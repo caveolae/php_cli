@@ -1,4 +1,4 @@
-FROM php:7.2-cli-alpine3.9
+FROM php:7.1-cli-alpine3.9
 
 # Packages
 RUN apk --update add \
@@ -31,6 +31,8 @@ RUN apk --update add \
     docker-php-ext-enable imagick && \
     pecl install redis && \
     docker-php-ext-enable redis && \
+    pecl install mongodb && \
+    docker-php-ext-enable mongodb && \
     pecl install swoole-4.2.11 && \
     docker-php-ext-enable swoole && \
     docker-php-ext-install gd && \
