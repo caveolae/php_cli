@@ -1,7 +1,7 @@
 FROM php:7.2-cli-alpine3.9
 
 # Packages
-RUN apk --update add \
+RUN apk add --update \
     autoconf \
     build-base \
     linux-headers \
@@ -33,6 +33,8 @@ RUN apk --update add \
     docker-php-ext-enable redis && \
     pecl install mongodb && \
     docker-php-ext-enable mongodb && \
+    apk add --update \
+    		libevent-dev && \
     pecl install event && \
     docker-php-ext-enable event && \
     pecl install swoole-4.3.5 && \
