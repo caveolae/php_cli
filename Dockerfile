@@ -9,7 +9,8 @@ RUN apk add --update \
     zlib-dev \
     curl \
     git \
-    subversion \
+    libevent-dev \
+    openssl-dev \
     freetype-dev \
     libjpeg-turbo-dev \
     libmcrypt-dev \
@@ -33,10 +34,10 @@ RUN apk add --update \
     docker-php-ext-enable redis && \
     pecl install mongodb && \
     docker-php-ext-enable mongodb && \
-    apk add --update \
-    		libevent-dev && \
     pecl install event && \
     docker-php-ext-enable event && \
+    mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini \
+    /usr/local/etc/php/conf.d/docker-php-ext-zz-event.ini && \
     pecl install swoole-4.3.5 && \
     docker-php-ext-enable swoole && \
     docker-php-ext-install gd && \
