@@ -1,7 +1,7 @@
 FROM php:7.2-cli-alpine3.9
 
 # Packages
-RUN apk --update add \
+RUN apk add --update \
     autoconf \
     build-base \
     linux-headers \
@@ -9,7 +9,8 @@ RUN apk --update add \
     zlib-dev \
     curl \
     git \
-    subversion \
+    libevent-dev \
+    openssl-dev \
     freetype-dev \
     libjpeg-turbo-dev \
     libmcrypt-dev \
@@ -31,7 +32,13 @@ RUN apk --update add \
     docker-php-ext-enable imagick && \
     pecl install redis && \
     docker-php-ext-enable redis && \
-    pecl install swoole && \
+    pecl install mongodb && \
+    docker-php-ext-enable mongodb && \
+    pecl install event && \
+    docker-php-ext-enable event && \
+    mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini \
+    /usr/local/etc/php/conf.d/docker-php-ext-zz-event.ini && \
+    pecl install swoole-4.3.5 && \
     docker-php-ext-enable swoole && \
     docker-php-ext-install gd && \
     docker-php-ext-enable opcache && \
@@ -39,8 +46,6 @@ RUN apk --update add \
     linux-headers \
     libaio-dev \
     && rm -rf /var/cache/apk/*
-
-
 
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
@@ -53,4 +58,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 VOLUME /var/www
 WORKDIR /var/www
 
-CMD [ "php", "./public/server.php" ]
+CMD [ "php", "-v" ]
