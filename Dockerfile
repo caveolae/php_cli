@@ -35,7 +35,7 @@ RUN apk --update add \
     docker-php-ext-enable mongodb && \
     pecl install event && \
     docker-php-ext-enable event && \
-    pecl install swoole && \
+    pecl install swoole-4.3.5 && \
     docker-php-ext-enable swoole && \
     docker-php-ext-install gd && \
     docker-php-ext-enable opcache && \
@@ -43,8 +43,6 @@ RUN apk --update add \
     linux-headers \
     libaio-dev \
     && rm -rf /var/cache/apk/*
-
-
 
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
