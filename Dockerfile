@@ -31,7 +31,7 @@ RUN apk --update add \
     docker-php-ext-enable imagick && \
     pecl install redis && \
     docker-php-ext-enable redis && \
-    pecl install swoole-4.2.11 && \
+    pecl install swoole && \
     docker-php-ext-enable swoole && \
     docker-php-ext-install gd && \
     docker-php-ext-enable opcache && \
