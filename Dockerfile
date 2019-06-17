@@ -31,6 +31,10 @@ RUN apk --update add \
     docker-php-ext-enable imagick && \
     pecl install redis && \
     docker-php-ext-enable redis && \
+    pecl install mongodb && \
+    docker-php-ext-enable mongodb && \
+    pecl install event && \
+    docker-php-ext-enable event && \
     pecl install swoole && \
     docker-php-ext-enable swoole && \
     docker-php-ext-install gd && \
@@ -53,4 +57,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 VOLUME /var/www
 WORKDIR /var/www
 
-CMD [ "php", "./public/server.php" ]
+CMD [ "php", "-v" ]
