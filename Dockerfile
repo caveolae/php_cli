@@ -35,7 +35,7 @@ RUN apk add --update \
     pecl install mongodb && \
     docker-php-ext-enable mongodb && \
     pecl install event && \
-    docker-php-ext-enable event && \
+    docker-php-ext-enable --ini-name zz-event.ini event && \
     mv /usr/local/etc/php/conf.d/docker-php-ext-event.ini \
     /usr/local/etc/php/conf.d/docker-php-ext-zz-event.ini && \
     pecl install swoole-4.3.5 && \
